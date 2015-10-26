@@ -10,11 +10,12 @@ var outer = function(){
 //Invoke outer saving the return value into another variable called 'inner'.
 
   //Code Here
+var inner = outer();
 
 //Once you do that, invoke inner.
 
   //Code Here
-
+inner();
 
 
 //Next problem
@@ -33,8 +34,8 @@ var callFriend = function(){
 //Do what you need to do in order to call your function and get 'Calling Jake at 435-215-9248' in your console.
 
   //Code Here
-
-
+var x = callFriend();
+x("435-215-9248");
 
 //Next Problem
 
@@ -45,12 +46,20 @@ var callFriend = function(){
 */
 
   //Code Here
+function makeCounter() {
+  counter = 0;
+  return (
+    function() {
+      return counter++;
+    }
+  );
+}
+
   var count = makeCounter();
   count() // 1
   count() // 2
   count() // 3
   count() // 4
-
 
 
 //Next Problem
@@ -62,8 +71,22 @@ var callFriend = function(){
 */
 
   //Code Here
+function first() {
+  console.log("Hello!");
+}
 
+function second(first) {
+  var i = 0;
+  return function third() {
+    if ( i < 1 ) {
+      first();
+      i++;
+    }
+  }
+}
 
+var greet = second(first);
+greet();
 
 //Next Problem
 
@@ -73,7 +96,18 @@ var callFriend = function(){
   Now, similar to the last problem, write a function called 'fnCounter' that accepts two parameters. The first parameter will be an anonymous function and the second parameter, 'N', will be a number. Now, in 'fnCounter', allow the anonymous funciton to be invoked 'N' number of times. After it's been invoked 'N' number of times, return 'STOP'.
 */
 
+var first = function() {
+  console.log("I am anonymous!");
+};
 
+function fnCounter(first, N) {
+ for (var i = 0; i < N; i++) {
+    first();
+  }
+  return "STOP";
+}
+
+fnCounter(first, 6);
 
 //Next Problem
 
@@ -92,18 +126,37 @@ var callFriend = function(){
 
     //Answer Here
 
+    The function will run counting with i and logging the i output, the higher the number, the longer it takes to return it.
+
 
   Now, run the function in your console and note what happpens.
 
   Was your answer right or wrong?
 
     //Answer Here
+  Wrong, the function displayed 6 and ran 5 times.
 
 
   Fix the counter function so that it works the way you expect it to work. (logging 1 then 2 then 3, etc)
 */
 
     //Code Here
+    var counter = function(){
+      for (var i=1; i<=5; i++) {
+        setTimeout( function timer(){
+            console.log( i );
+        }, i*1000 );
+      }
+    };
+
+    var counter = function(){
+      for (var i=1; i<=5; i++) {
+        setTimeout( function timer(x){
+            console.log( x );
+        }, i*1000, i);
+      }
+    };
+
 
 
 
@@ -125,3 +178,13 @@ var callFriend = function(){
 */
 
 
+var funcArray = [];
+function fArray() {
+  return function pFunc() {
+    for (var i = 0; i < 6; i++) {
+      funcArray.push();
+    }
+  }
+}
+
+var funcArray = [];
